@@ -1,0 +1,25 @@
+#!/bin/bash
+
+case "$1" in
+  -v|--version)
+    version="$2"
+esac
+
+mkdir -p ${OPENSHIFT_VERTX_DIR}/.m2
+
+GLOB_ENV="/etc/jelastic/environment"
+export PATH="${OPENSHIFT_VERTX_DIR}:$PATH"
+echo "export PATH=$PATH" >> $GLOB_ENV
+
+shopt -s dotglob
+for dir in conf tmp logs; do
+    mkdir -p $OPENSHIFT_VERTX_DIR/$dir
+done
+
+
+for dir in conf configuration; do
+    mkdir -p $OPENSHIFT_VERTX_DIR/$dir
+    cp -Lr $OPENSHIFT_VERTX_DIR/versions/$version/$dir/* $OPENSHIFT_VERTX_DIR/$dir
+done
+
+echo "$version" > $OPENSHIFT_VERTX_DIR/env/OPENSHIFT_VERTX_VERSION
