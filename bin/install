@@ -5,9 +5,9 @@ case "$1" in
     version="$2"
 esac
 
-#ln -s $OPENSHIFT_VERTX_DIR/versions/$version/conf $OPENSHIFT_VERTX_DIR/conf
-#ln -s $OPENSHIFT_VERTX_DIR/versions/$version/ROOT $OPENSHIFT_VERTX_DIR/ROOT
-#ln -s $OPENSHIFT_VERTX_DIR/versions/$version/api-docs $OPENSHIFT_VERTX_DIR/api-docs
+ln -s $OPENSHIFT_VERTX_DIR/versions/$version/conf $OPENSHIFT_VERTX_DIR/conf
+ln -s $OPENSHIFT_VERTX_DIR/versions/$version/ROOT $OPENSHIFT_VERTX_DIR/ROOT
+ln -s $OPENSHIFT_VERTX_DIR/versions/$version/api-docs $OPENSHIFT_VERTX_DIR/api-docs
 
 shopt -s dotglob
 for dir in template conf; do
